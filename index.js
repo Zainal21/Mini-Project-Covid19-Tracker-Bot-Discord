@@ -25,12 +25,13 @@ client.on('message', message => {
        let country = args[1];
        axios.get(`https://covid19.mathdro.id/api/countries/${country}`).then((response) => {
          console.log(response)
-          const {confirmed, recovered, deaths} = response.data
+          const {confirmed, recovered, deaths, lastUpdate} = response.data
           let msg = new MessageEmbed()
                     .addField('Show All Data Covid19 in this Country', country)
                     .addField('Confirmed', confirmed.value)
                     .addField('Deaths', deaths.value)
                     .addField('Recovered', recovered.value)
+                    .addField('Last Update', lastUpdate)
                     .setFooter('Made By Muhamad Zainal Arifin')
                     .setColor('#ddd')
             message.channel.send(msg)
